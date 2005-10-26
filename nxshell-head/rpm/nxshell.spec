@@ -18,7 +18,7 @@ Version:      1.3
 Release:      2
 Group:        System/X11/Utilities
 License:      GPL
-Source:       nxshell-1.3.tgz
+Source:       nxshell.tar.bz2
 BuildRoot:    %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -31,7 +31,7 @@ Authors:
     Marcus Schäfer <ms@suse.de>
 
 %prep
-%setup
+%setup -n nxshell
 
 %build
 make
