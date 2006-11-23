@@ -7,19 +7,16 @@
 #
 # Please submit bugfixes or comments via http://www.suse.de/feedback/
 #
-
-# neededforbuild x-devel-packages
-# usedforbuild aaa_base acl attr bash bind9-utils bison bzip2 coreutils cpio cpp cvs cyrus-sasl db devs diffutils e2fsprogs file filesystem fillup findutils flex gawk gdbm-devel glibc glibc-devel glibc-locale gpm grep groff gzip info insserv kbd less libacl libattr libgcc libstdc++ libxcrypt m4 make man mktemp modutils ncurses ncurses-devel net-tools netcfg openldap2-client openssl pam pam-devel pam-modules patch permissions popt ps rcs readline sed sendmail shadow strace syslogd sysvinit tar texinfo timezone unzip util-linux vim zlib zlib-devel autoconf automake binutils cracklib gcc gdbm gettext libtool perl rpm
-
-Name:         nxshell
-Requires:     netcat NX bash perl
-Summary:      NX Tool to start single application via NX protocol
-Version:      1.3
-Release:      2
-Group:        System/X11/Utilities
-License:      GPL
-Source:       nxshell.tar.bz2
-BuildRoot:    %{_tmppath}/%{name}-%{version}-build
+Name:          nxshell
+BuildRequires: xorg-x11-server-sdk
+Requires:      netcat NX bash perl
+Summary:       NX Tool to start single application via NX protocol
+Version:       1.3
+Release:       2
+Group:         System/X11/Utilities
+License:       GPL
+Source:        nxshell.tar.bz2
+BuildRoot:     %{_tmppath}/%{name}-%{version}-build
 
 %description
 nxshell make use of the NX proxy system to run a remote

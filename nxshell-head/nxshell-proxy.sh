@@ -289,7 +289,7 @@ fi
 	log "starting nxproxy..."
 	count=0;
 	while true;do
-		nxproxy -S "127.0.0.1:$display" >/dev/null 2>&1
+		nxproxy -S "127.0.0.1:$display"
 		if [ $? = 0 ] || [ $count = 3 ];then
 			break
 		fi

@@ -169,7 +169,7 @@ nxagent \
 	-once -persistent -nolimit -display $NX_HOST_PORT_PARAMS:$display \
 	-class TrueColor -noreset -R \
 	-auth $HOME/.Xauthority -name "NX-Tunnel - $HOSTNAME" :$display \
->/dev/null 2>&1 &
+&
 AGENT=$!
 while true;do
 	sleep 5
@@ -196,15 +196,26 @@ done
 #=====================================
 # setup keyboard layout
 #-------------------------------------
+if [ -z "$layout" ] || [ "$layout" = "us" ];then
+	syskbd=/etc/sysconfig/keyboard
+	layout=`cat $syskbd | grep ^KEYTABLE | cut -f2 -d= | tr -d \"`
+	log "system keyboard is set to: $layout";
+fi
 if [ ! -z "$layout" ] && [ ! "$layout" = "us" ];then
 	xkb="$cdir/nxshell/xkbctrl $layout"
 	opt=`$xkb | grep Apply | cut -f2 -d: | tr -d \"`
 	opt=`echo $opt`
 	if [ ! -z "$opt" ];then
 		log "setup keyboard layout: $layout"
-		setxkbmap $opt >/dev/null 2>&1
+		eval setxkbmap $opt
+		eval setxkbmap $opt
 	fi
 fi
+
+#=====================================
+# setup font path addons
+#-------------------------------------
+xset fp+ /opt/kde3/share/fonts
 
 #=====================================
 # run the application
