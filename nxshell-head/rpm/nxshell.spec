@@ -8,7 +8,7 @@
 # Please submit bugfixes or comments via http://www.suse.de/feedback/
 #
 Name:          nxshell
-BuildRequires: xorg-x11-server-sdk
+BuildRequires: xorg-x11-devel
 Requires:      netcat NX bash perl
 Summary:       NX Tool to start single application via NX protocol
 Version:       1.3
