@@ -31,6 +31,34 @@ function log {
 	time=`date +%H:%M:%S`
 	echo "$time $hostname nxshell-proxy: $1"
 }
+function createSessionKey {
+	local sessionDir=$1
+	local remoteHost=$2
+	local remoteUser=$3
+	if [ -f $sessionDir/session.key ];then
+		rm -f $sessionDir/session.key
+	fi
+	ssh-keygen -q -t dsa -f $sessionDir/session.key -N ""
+	if [ ! $? = 0 ];then
+		log "Failed to create ssh session key... abort"
+		exit 1
+	fi
+	ssh-copy-id -i $sessionDir/session.key.pub \
+		$remoteUser@$remoteHost &>/dev/null
+	if [ ! $? = 0 ];then
+		log "Failed to install ssh session key... abort"
+		exit 1
+	fi
+}
+function cleanupSessionKey {
+	local sessionDir=$1
+	local remoteHost=$2
+	local remoteUser=$3
+	f=".ssh/authorized_keys"
+	c="cat \$HOME/$f|head -n -1 > \$HOME/$f.new && mv \$HOME/$f.new \$HOME/$f"
+	eval ssh -i $sessionDir/session.key \
+		$remoteUser@$remoteHost bash -c \'\"$c\"\'
+}
 function usage {
 	echo "Linux nxshell (proxy) Version $VERSION (2004-12-08)"
 	echo "(C) Copyright 2004 - SuSE GmbH <Marcus Schaefer ms@suse.de>"
@@ -252,13 +280,18 @@ if [ -z "$netcatPort" ];then
 fi
 
 #=====================================
+# Install session key
+#-------------------------------------
+cdir=/var/tmp/.session-$thisUser
+createSessionKey $cdir $remoteHost $thisUser
+
+#=====================================
 # Transfer remote code
 #-------------------------------------
 log "Transfering remote code..."
 code=/usr/share/nxshell/remote.tgz
-cdir=/var/tmp/.session-$thisUser
 arch=$cdir/remote.tgz
-cat $code | ssh $debug -p $sshport $remote \
+cat $code | ssh -i $cdir/session.key $debug -p $sshport $remote \
 	"mkdir -p $cdir && cat >$arch && tar -xzf $arch -C $cdir"
 
 #=====================================
@@ -266,7 +299,8 @@ cat $code | ssh $debug -p $sshport $remote \
 #-------------------------------------
 log "waiting for agent [ sync: $netcatPort ]..."
 nc="netcat -w 30 -l -p $netcatPort"
-ssh $debug -p $sshport -f -L$netcatPort:localhost:$netcatPort \
+ssh -i $cdir/session.key $debug -p $sshport -f \
+	-L$netcatPort:localhost:$netcatPort \
 	$remote "echo "$COOKIE" | $nc;echo "$COOKIE" | $nc"
 ncpid=`ps ax | grep "\-p $sshport -f -L$netcatPort" | grep -v grep | cut -c0-6`
 ncpid=`echo $ncpid`
@@ -302,11 +336,16 @@ PROXY=$!
 # open ssh connection, run nxagent
 #-------------------------------------
 log "open ssh connection to $remote [ port: $tunnelPort ]"
-ssh $debug -p $sshport -X \
+ssh -i $cdir/session.key $debug -p $sshport -X \
 	-L$tunnelPort:127.0.0.1:$tunnelPort \
 	$remote $cdir/nxshell/nxshell-agent.sh --compression $compressionLevel \
 	--command $command --nxdisplay $display --syncport $netcatPort \
 	--layout $layout
+
+#=====================================
+# cleanup session key
+#-------------------------------------
+cleanupSessionKey $cdir $remoteHost $thisUser
 
 #=====================================
 # clean sweep
