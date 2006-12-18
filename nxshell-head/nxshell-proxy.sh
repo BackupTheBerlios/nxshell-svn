@@ -283,7 +283,7 @@ fi
 # Install session key
 #-------------------------------------
 cdir=/var/tmp/.session-$thisUser
-createSessionKey $cdir $remoteHost $thisUser
+mkdir -p $cdir && createSessionKey $cdir $remoteHost $thisUser
 
 #=====================================
 # Transfer remote code
