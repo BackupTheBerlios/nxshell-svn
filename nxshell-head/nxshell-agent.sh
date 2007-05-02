@@ -166,7 +166,7 @@ done
 #-------------------------------------
 log "starting nxagent: init display [$display]"
 nxagent \
-	-once -persistent -nolimit -display $NX_HOST_PORT_PARAMS:$display \
+	-once -persistent -display $NX_HOST_PORT_PARAMS:$display \
 	-class TrueColor -noreset -R \
 	-auth $HOME/.Xauthority -name "NX-Tunnel - $HOSTNAME" :$display \
 &

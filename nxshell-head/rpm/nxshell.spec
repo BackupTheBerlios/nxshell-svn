@@ -38,6 +38,7 @@ rm -rf $RPM_BUILD_ROOT
 make buildroot=$RPM_BUILD_ROOT install
 
 %files
+%defattr(-,root,root)
 %dir /usr/share/nxshell
 /usr/bin/nxshell
 /usr/bin/nxshell-agent.sh

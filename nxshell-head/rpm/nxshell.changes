@@ -1,4 +1,10 @@
 -------------------------------------------------------
+Wed May  2 17:08:13 CEST 2007 - ms@suse.de
+
+- removed -nolimit option from nxshell-agent.sh
+- added %defattr to spec file section
+
+-------------------------------------------------------
 Mon Dec 18 17:54:35 CET 2006 - ms@suse.de
 
 - fixed environment
