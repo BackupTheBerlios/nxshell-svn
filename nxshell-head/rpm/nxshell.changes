@@ -4,6 +4,16 @@ Fri May  9 11:57:37 CEST 2008 - ms@suse.de
 - cut -c0-6: cut: fields and positions are numbered from 1
   changed to -c1-7
 
+-------------------------------------------------------------------
+Thu Jul  5 21:30:51 CEST 2007 - sndirsch@suse.de
+
+- fixed path for nxproxy/nxagent once more
+
+-------------------------------------------------------------------
+Thu Jun 28 11:42:40 CEST 2007 - sndirsch@suse.de
+
+- fixed path for nxproxy/nxagent
+
 -------------------------------------------------------
 Wed May  2 17:08:13 CEST 2007 - ms@suse.de
 
