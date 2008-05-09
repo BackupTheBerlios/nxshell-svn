@@ -302,7 +302,7 @@ nc="netcat -w 30 -l -p $netcatPort"
 ssh -i $cdir/session.key $debug -p $sshport -f \
 	-L$netcatPort:localhost:$netcatPort \
 	$remote "echo "$COOKIE" | $nc;echo "$COOKIE" | $nc"
-ncpid=`ps ax | grep "\-p $sshport -f -L$netcatPort" | grep -v grep | cut -c0-6`
+ncpid=`ps ax | grep "\-p $sshport -f -L$netcatPort" | grep -v grep | cut -c1-7`
 ncpid=`echo $ncpid`
 if [ -z "$ncpid" ];then
 	log "FATAL: couldn't get ssh process ID... abort"

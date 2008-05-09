@@ -1,4 +1,10 @@
 -------------------------------------------------------
+Fri May  9 11:57:37 CEST 2008 - ms@suse.de
+
+- cut -c0-6: cut: fields and positions are numbered from 1
+  changed to -c1-7
+
+-------------------------------------------------------
 Wed May  2 17:08:13 CEST 2007 - ms@suse.de
 
 - removed -nolimit option from nxshell-agent.sh
