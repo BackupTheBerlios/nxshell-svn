@@ -20,3 +20,6 @@ install:
 
 clean:
 	${MAKE} -C ./xtest clean
+
+build:
+	./.doit -p --local

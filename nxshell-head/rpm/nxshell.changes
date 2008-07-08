@@ -1,4 +1,10 @@
 -------------------------------------------------------
+Tue Jul  8 11:35:46 CEST 2008 - ms@suse.de
+
+- added check for NX version on remote/local side
+- added check if nxagent could be called or not
+
+-------------------------------------------------------
 Fri May  9 11:57:37 CEST 2008 - ms@suse.de
 
 - cut -c0-6: cut: fields and positions are numbered from 1

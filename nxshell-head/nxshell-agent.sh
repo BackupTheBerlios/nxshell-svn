@@ -173,6 +173,10 @@ nxagent \
 AGENT=$!
 while true;do
 	sleep 5
+	if ! kill -0 $AGENT &>/dev/null;then
+		log "couldn't start nxagent... abort"
+		exit 1
+	fi
 	if [ -S /tmp/.X11-unix/X$display ];then
 		log "starting nxagent: ready to accept connections"
 		break

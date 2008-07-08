@@ -286,6 +286,17 @@ cdir=/var/tmp/.session-$thisUser
 mkdir -p $cdir && createSessionKey $cdir $remoteHost $thisUser
 
 #=====================================
+# Check NX versions local/remote
+#-------------------------------------
+rpmQC="rpm -q NX --qf %{VERSION}"
+locNX=`$rpmQC`
+remNX=`ssh -i $cdir/session.key $debug -p $sshport $remote $rpmQC`
+if [ ! $locNX = $remNX ];then
+	log "NX versions differ: local: $locNX remote: $remNX... abort"
+	exit 1
+fi
+
+#=====================================
 # Transfer remote code
 #-------------------------------------
 log "Transfering remote code..."
