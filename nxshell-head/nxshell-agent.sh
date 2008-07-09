@@ -125,13 +125,13 @@ done
 #-------------------------------------
 # NX protocol and image compression...
 case "$compressionLevel" in
-	LAN)   link=lan   ; pack=no-pack        ;;
-	WAN)   link=wan   ; pack=no-pack        ;;
-	DSL)   link=adsl  ; pack=16m-png-jpeg-1 ;;
-	ISDN)  link=isdn  ; pack=64k-png-jpeg-1 ;;
-	MODEM) link=modem ; pack=4k-png-jpeg-1  ;;
+	LAN)   link=lan   ; pack=no-pack ;;
+	WAN)   link=wan   ; pack=no-pack ;;
+	DSL)   link=adsl  ; pack=no-pack ;;
+	ISDN)  link=isdn  ; pack=64k-png ;;
+	MODEM) link=modem ; pack=4k-png  ;;
 	*) 
-		link=adsl ; pack=16m-png-jpeg-1
+		link=adsl ; pack=no-pack
 	;;
 esac
 
