@@ -1,10 +1,10 @@
 -------------------------------------------------------
-Wed Jul  9 15:23:48 CEST 2008 - ms@suse.de
+Thu Jul 10 15:55:29 CEST 2008 - ms@suse.de
 
 - fixed NX image compression modes
 
 -------------------------------------------------------
-Tue Jul  8 11:35:46 CEST 2008 - ms@suse.de
+Thu Jul 10 15:55:13 CEST 2008 - ms@suse.de
 
 - added check for NX version on remote/local side
 - added check if nxagent could be called or not
