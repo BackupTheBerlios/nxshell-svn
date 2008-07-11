@@ -40,10 +40,6 @@ Mon Dec 18 17:54:35 CET 2006 - ms@suse.de
 Fri Dec 15 10:35:00 CET 2006 - ms@suse.de
 
 - added ssh handling via one time ssh session key
-
--------------------------------------------------------
-Thu Nov 23 14:50:51 CET 2006 - ms@suse.de
-
 - activate output of debug information
 - automatically add important font paths
 - automatically setup keyboard type and model
@@ -58,15 +54,7 @@ Tue Sep  6 14:50:47 CEST 2005 - ms@suse.de
 -------------------------------------------------------
 Mon Mar 14 18:21:03 CET 2005 - ms@suse.de
 
-- added a short sleep in front of the connection
-
--------------------------------------------------------
-Mon Mar 14 11:41:30 CET 2005 - ms@suse.de
-
-- fixed usage of IP adresses (#72310)
-
--------------------------------------------------------
-Mon Nov 15 11:41:30 CET 2005 - ms@suse.de
-
 - nxshell a script to provide single X-Application access
   via remote NX protocol using the -rootless option of NX
+- added a short sleep in front of the connection
+- fixed usage of IP adresses (#72310)
