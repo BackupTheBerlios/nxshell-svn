@@ -1,4 +1,10 @@
 -------------------------------------------------------
+Thu Sep  4 19:25:32 CEST 2008 - ms@suse.de
+
+- fixed security issue $COOKIE appears in process list
+- fixed session key cleanup, could clean the wrong key
+
+-------------------------------------------------------
 Thu Jul 10 15:55:29 CEST 2008 - ms@suse.de
 
 - fixed NX image compression modes

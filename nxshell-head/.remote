@@ -5,6 +5,7 @@ cp nxshell-agent.sh    nxshell
 cp xctrl/Keyboard.map  nxshell
 cp xctrl/xkbctrl.pl    nxshell/xkbctrl
 cp common/functions.sh nxshell
+cp common/cleankey.sh  nxshell
 cp xtest/testX         nxshell 
 
 tar -cvzf remote.tgz nxshell

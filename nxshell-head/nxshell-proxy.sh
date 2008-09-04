@@ -54,10 +54,9 @@ function cleanupSessionKey {
 	local sessionDir=$1
 	local remoteHost=$2
 	local remoteUser=$3
-	f=".ssh/authorized_keys"
-	c="cat \$HOME/$f|head -n -1 > \$HOME/$f.new && mv \$HOME/$f.new \$HOME/$f"
+	local k=`cat $sessionDir/session.key.pub`
 	eval ssh -i $sessionDir/session.key \
-		$remoteUser@$remoteHost bash -c \'\"$c\"\'
+		$remoteUser@$remoteHost $sessionDir/nxshell/cleankey.sh \"$k\"
 }
 function usage {
 	echo "Linux nxshell (proxy) Version $VERSION (2004-12-08)"

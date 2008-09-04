@@ -68,10 +68,12 @@ function getCookie {
 # addCookie...
 #-------------------------------------
 function addCookie {
-	/usr/X11R6/bin/xauth add \
-		"$HOSTNAME/unix:$display" MIT-MAGIC-COOKIE-1 "$COOKIE"
-	/usr/X11R6/bin/xauth add \
-		"$HOSTNAME:$display" MIT-MAGIC-COOKIE-1 "$COOKIE"
+	xauth -q <<- EOF
+		add $HOSTNAME/unix:$display MIT-MAGIC-COOKIE-1 $COOKIE
+	EOF
+	xauth -q <<- EOF
+		add $HOSTNAME:$display MIT-MAGIC-COOKIE-1 $COOKIE
+	EOF
 }
 #=====================================
 # newDisplay...
