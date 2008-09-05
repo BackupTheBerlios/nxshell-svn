@@ -14,7 +14,7 @@
 #               :
 # STATUS        : BETA
 #----------------
-pkey=$1
+pkey=$*
 file="$HOME/.ssh/authorized_keys"
 
 cat $file | grep -v "^$pkey$" > $file.new && mv $file.new $file
