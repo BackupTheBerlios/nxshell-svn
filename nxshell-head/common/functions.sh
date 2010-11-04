@@ -20,8 +20,8 @@
 # cleanup...
 #-------------------------------------
 function cleanup {
-	/usr/X11R6/bin/xauth remove "$HOSTNAME/unix:$display" >/dev/null 2>&1
-	/usr/X11R6/bin/xauth remove "$HOSTNAME:$display" >/dev/null 2>&1
+	xauth remove "$HOSTNAME/unix:$display" >/dev/null 2>&1
+	xauth remove "$HOSTNAME:$display" >/dev/null 2>&1
 }
 #=====================================
 # cleanupAndExit...
@@ -48,7 +48,7 @@ function checkDisplay {
 # getCookie...
 #-------------------------------------
 function getCookie {
-	AUTH=`/usr/X11R6/bin/xauth list "${DISPLAY#localhost}"`
+	AUTH=`xauth list "${DISPLAY#localhost}"`
 	if test -z "$AUTH"; then
 		log "Unable to determine the X authorization token to use."
 		log "DISPLAY environment variable may be set incorrectly."
