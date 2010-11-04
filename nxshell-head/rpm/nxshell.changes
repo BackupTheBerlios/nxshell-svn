@@ -1,4 +1,10 @@
 -------------------------------------------------------
+Thu Nov  4 10:17:07 CET 2010 - ms@suse.de
+
+- fixed xauth call, don't call it with abs path
+- fixed NX version check if one side is missing NX at all
+
+-------------------------------------------------------
 Thu Sep  4 19:25:32 CEST 2008 - ms@suse.de
 
 - fixed security issue $COOKIE appears in process list
